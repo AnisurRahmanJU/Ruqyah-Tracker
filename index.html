@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>রুকইয়াহ ট্র্যাকার</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Hind Siliguri -->
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container min-vh-100 d-flex flex-column align-items-center justify-content-center">
+
+  <!-- MAIN CARD (CATEGORY + QUIZ + RUQYAH) -->
+  <div id="mainCard" class="game-card text-center p-4">
+    
+    <!-- CATEGORY SCREEN -->
+    <div id="categoryScreen">
+      <i class="fa-solid fa-moon-stars fa-3x text-info mb-3"></i>
+      <h4>রুকইয়াহ ট্র্যাকার</h4>
+      <p class="category-label mb-4">ক্যাটেগরি নির্বাচন করুন</p>
+
+      <button class="btn category-btn w-100 mb-2" onclick="startQuiz('jinn')">
+        <i class="fa-solid fa-dungeon me-2"></i> জ্বীনের আছর
+      </button>
+
+      <button class="btn category-btn w-100 mb-2" onclick="startQuiz('nazar')">
+        <i class="fa-solid fa-eye me-2"></i> বদ নজর
+      </button>
+
+      <button class="btn category-btn w-100" onclick="startQuiz('waswasa')">
+        <i class="fa-solid fa-brain me-2"></i> ওয়াসওয়াসা
+      </button>
+
+      <p class="disclaimer mt-4">এটি চূড়ান্ত সিদ্ধান্ত নয়</p>
+    </div>
+
+    <!-- QUIZ SCREEN -->
+    <div id="quizScreen" class="d-none">
+      <div class="d-flex justify-content-between small opacity-text mb-2">
+        <span id="categoryTitle"></span>
+        <span id="progress"></span>
+      </div>
+
+      <h5 id="questionText" class="my-4 text-center"></h5>
+
+      <!-- ANSWER BUTTONS -->
+      <div class="d-grid gap-2">
+        <button class="btn answer-btn yes" onclick="answer(100)">
+          <i class="fa-solid fa-check"></i> হ্যাঁ
+        </button>
+        <button class="btn answer-btn maybe" onclick="answer(50)">
+          <i class="fa-solid fa-circle-half-stroke"></i> মাঝে মাঝে
+        </button>
+        <button class="btn answer-btn no" onclick="answer(0)">
+          <i class="fa-solid fa-xmark"></i> না
+        </button>
+      </div>
+
+      <p class="disclaimer text-center mt-3">এটি চূড়ান্ত সিদ্ধান্ত নয়</p>
+    </div>
+
+    <!-- RUQYAH (ALWAYS VISIBLE) -->
+    <div class="ruqyah-box mt-4">
+      <p class="ruqyah-title mb-2">
+        🕌 কুরআনের থেকে সংক্ষিপ্ত রুকইয়াহ
+      </p>
+      <ul class="ruqyah-list mb-2">
+        <li>সুরা ফাতিহা</li>
+        <li>আয়াতুল কুরসি (সুরা বাকারা – ২৫৫)</li>
+        <li>সুরা বাকারা (২৮৪–২৮৬)</li>
+        <li>সুরা ইউসুফ (৬৪)</li>
+        <li>সুরা কাফিরুন</li>
+        <li>সুরা ইখলাস</li>
+        <li>সুরা ফালাক</li>
+        <li>সুরা নাস</li>
+      </ul>
+      <p class="ruqyah-dua mb-0">
+        🤲 আল্লাহর কাছে সাহায্য চাওয়া
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
