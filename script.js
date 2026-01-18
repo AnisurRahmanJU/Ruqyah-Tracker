@@ -2,6 +2,7 @@ let current = 0;
 let score = 0;
 let activeCategory = "";
 let activeQuestions = [];
+let quizEnded = false; // New flag to prevent extra clicks
 
 const data = {
   jinn: {
@@ -61,11 +62,18 @@ const data = {
   }
 };
 
+// START QUIZ
 function startQuiz(category) {
   activeCategory = category;
   activeQuestions = data[category].questions;
   current = 0;
   score = 0;
+  quizEnded = false; // reset flag
+
+  // Remove previous result if exists
+  const quizScreen = document.getElementById("quizScreen");
+  const oldResult = quizScreen.querySelector('.result-content');
+  if(oldResult) oldResult.remove();
 
   document.getElementById("categoryScreen").classList.add("d-none");
   document.getElementById("quizScreen").classList.remove("d-none");
@@ -74,32 +82,50 @@ function startQuiz(category) {
   loadQuestion();
 }
 
+// LOAD QUESTION
 function loadQuestion() {
-  document.getElementById("questionText").innerText = activeQuestions[current];
-  document.getElementById("progress").innerText =
-    `${current + 1} / ${activeQuestions.length}`;
+  if (current < activeQuestions.length) {
+    document.getElementById("questionText").innerText = activeQuestions[current];
+    document.getElementById("progress").innerText =
+      `${current + 1} / ${activeQuestions.length}`;
+  } else {
+    // Quiz finished
+    document.getElementById("questionText").innerText = "🎉 আর কোন প্রশ্ন নেই";
+    document.getElementById("progress").innerText = "";
+    quizEnded = true; // prevent extra clicks
+  }
 
   loadQuizExtraButtons();
 }
 
+// ANSWER BUTTON
 function answer(value) {
+  if (quizEnded) return; // prevent extra clicks after quiz ends
   score += value;
 
   setTimeout(() => {
     current++;
-    if (current < activeQuestions.length) {
-      loadQuestion();
-    } else {
+    loadQuestion();
+
+    if (current >= activeQuestions.length) {
       showResult();
     }
   }, 180);
 }
 
+// SHOW RESULT
 function showResult() {
   const percent = (score / (activeQuestions.length * 100)) * 100;
 
-  document.getElementById("quizScreen").innerHTML = `
-    <div class="text-center">
+  const quizScreen = document.getElementById("quizScreen");
+
+  // Remove previous main content (except extra buttons)
+  const oldContent = quizScreen.querySelector('.result-content');
+  if(oldContent) oldContent.remove();
+
+  const resultHTML = document.createElement('div');
+  resultHTML.className = 'result-content text-center';
+  resultHTML.innerHTML = `
       <h4>${data[activeCategory].title}</h4>
       <p class="mt-2">সম্ভাব্য প্রভাব</p>
       <h2 class="text-info">${percent.toFixed(0)}%</h2>
@@ -115,14 +141,16 @@ function showResult() {
             </p>`
       }
       <p class="disclaimer mt-3">এটি চূড়ান্ত সিদ্ধান্ত নয়</p>
-      <div id="quizExtraButtons" class="mt-2 d-flex flex-wrap justify-content-center gap-2"></div>
-    </div>
   `;
 
+  const extraButtonsDiv = document.getElementById("quizExtraButtons");
+  quizScreen.insertBefore(resultHTML, extraButtonsDiv);
+
+  quizEnded = true; // mark quiz ended
   loadQuizExtraButtons();
 }
 
-// FUNCTION TO SHOW OTHER CATEGORY BUTTONS DURING QUIZ
+// SHOW OTHER CATEGORY BUTTONS
 function showCategoryButtonsInQuiz() {
   const container = document.createElement('div');
   container.className = 'd-flex flex-wrap justify-content-center gap-2';
@@ -132,7 +160,10 @@ function showCategoryButtonsInQuiz() {
       const btn = document.createElement('button');
       btn.className = 'btn btn-sm btn-secondary';
       btn.innerText = data[key].title;
-      btn.onclick = () => startQuiz(key);
+
+      // Attach click event properly
+      btn.addEventListener('click', () => startQuiz(key));
+
       container.appendChild(btn);
     }
   }
@@ -140,6 +171,7 @@ function showCategoryButtonsInQuiz() {
   return container;
 }
 
+// LOAD EXTRA BUTTONS
 function loadQuizExtraButtons() {
   const container = document.getElementById('quizExtraButtons');
   if (!container) return;
