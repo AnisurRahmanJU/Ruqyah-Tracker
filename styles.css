@@ -1,0 +1,100 @@
+* {
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #050b1f, #081a33);
+  color: #eaf1ff;
+  padding: 20px;
+}
+
+/* MAIN CARD */
+.game-card {
+  background: linear-gradient(160deg, #0c1f3f, #08162e);
+  border-radius: 18px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 0 40px rgba(0, 80, 160, 0.5);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 20px;
+}
+
+/* CATEGORY BUTTON */
+.category-btn {
+  background: linear-gradient(135deg, #0d6efd, #4dabf7);
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 500;
+}
+
+.category-btn:hover {
+  opacity: 0.9;
+}
+
+.category-label {
+  opacity: 0.7;
+}
+
+/* ANSWER BUTTONS */
+.answer-btn {
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.answer-btn.yes {
+  background: #1e7e34;
+  color: #fff;
+}
+
+.answer-btn.maybe {
+  background: #856404;
+  color: #fff;
+}
+
+.answer-btn.no {
+  background: #721c24;
+  color: #fff;
+}
+
+/* TEXT */
+.opacity-text {
+  opacity: 0.6;
+}
+
+.disclaimer {
+  opacity: 0.35;
+  font-size: 0.85rem;
+}
+
+/* RUQYAH BOX */
+.ruqyah-box {
+  background: rgba(12, 31, 63, 0.85);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 16px;
+  box-shadow: 0 0 20px rgba(0, 80, 160, 0.5);
+}
+
+.ruqyah-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.ruqyah-list {
+  padding-left: 18px;
+  margin-bottom: 6px;
+}
+
+.ruqyah-list li {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+.ruqyah-dua {
+  font-size: 0.85rem;
+  opacity: 0.65;
+}
