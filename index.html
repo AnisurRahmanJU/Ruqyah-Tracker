@@ -20,7 +20,7 @@
 
 <div class="container min-vh-100 d-flex flex-column align-items-center justify-content-center">
 
-  <!-- MAIN CARD (CATEGORY + QUIZ + RUQYAH) -->
+  <!-- MAIN CARD -->
   <div id="mainCard" class="game-card text-center p-4">
     
     <!-- CATEGORY SCREEN -->
@@ -54,7 +54,7 @@
       <h5 id="questionText" class="my-4 text-center"></h5>
 
       <!-- ANSWER BUTTONS -->
-      <div class="d-grid gap-2">
+      <div class="d-grid gap-2 mb-3">
         <button class="btn answer-btn yes" onclick="answer(100)">
           <i class="fa-solid fa-check"></i> হ্যাঁ
         </button>
@@ -66,7 +66,10 @@
         </button>
       </div>
 
-      <p class="disclaimer text-center mt-3">এটি চূড়ান্ত সিদ্ধান্ত নয়</p>
+      <p class="disclaimer text-center mt-2">এটি চূড়ান্ত সিদ্ধান্ত নয়</p>
+
+      <!-- OTHER CATEGORY BUTTONS (DYNAMIC) -->
+      <div id="quizExtraButtons" class="mt-2 d-flex flex-wrap justify-content-center gap-2"></div>
     </div>
 
     <!-- RUQYAH (ALWAYS VISIBLE) -->
