@@ -90,7 +90,7 @@ function loadQuestion() {
       `${current + 1} / ${activeQuestions.length}`;
   } else {
     // Quiz finished
-    document.getElementById("questionText").innerText = "🎉 আর কোন প্রশ্ন নেই";
+    document.getElementById("questionText").innerText = " ❌-আর কোন প্রশ্ন নেই";
     document.getElementById("progress").innerText = "";
     quizEnded = true; // prevent extra clicks
   }
