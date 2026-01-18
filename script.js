@@ -39,7 +39,6 @@ const data = {
       "অকারণে দুর্বল মনে হয়?"
     ]
   },
-
   nazar: {
     title: "👁️ বদ নজর",
     questions: [
@@ -50,7 +49,6 @@ const data = {
       "পরিবারে হঠাৎ অশান্তি আসে?"
     ]
   },
-
   waswasa: {
     title: "🧠 ওয়াসওয়াসা",
     questions: [
@@ -80,6 +78,8 @@ function loadQuestion() {
   document.getElementById("questionText").innerText = activeQuestions[current];
   document.getElementById("progress").innerText =
     `${current + 1} / ${activeQuestions.length}`;
+
+  loadQuizExtraButtons();
 }
 
 function answer(value) {
@@ -115,6 +115,38 @@ function showResult() {
             </p>`
       }
       <p class="disclaimer mt-3">এটি চূড়ান্ত সিদ্ধান্ত নয়</p>
+      <div id="quizExtraButtons" class="mt-2 d-flex flex-wrap justify-content-center gap-2"></div>
     </div>
   `;
+
+  loadQuizExtraButtons();
+}
+
+// FUNCTION TO SHOW OTHER CATEGORY BUTTONS DURING QUIZ
+function showCategoryButtonsInQuiz() {
+  const container = document.createElement('div');
+  container.className = 'd-flex flex-wrap justify-content-center gap-2';
+
+  for (let key in data) {
+    if (key !== activeCategory) {
+      const btn = document.createElement('button');
+      btn.className = 'btn btn-sm btn-secondary';
+      btn.innerText = data[key].title;
+      btn.onclick = () => startQuiz(key);
+      container.appendChild(btn);
+    }
+  }
+
+  return container;
+}
+
+function loadQuizExtraButtons() {
+  const container = document.getElementById('quizExtraButtons');
+  if (!container) return;
+
+  container.innerHTML = '';
+  const buttons = showCategoryButtonsInQuiz();
+  while(buttons.firstChild) {
+    container.appendChild(buttons.firstChild);
+  }
 }
